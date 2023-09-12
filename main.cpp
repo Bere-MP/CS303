@@ -13,10 +13,12 @@ int main() {
 
   string option;
 
+  // Ask user for file name
   cout << "What is the name of the file: ";
   cin >> fileName;
   cout << endl << endl;
 
+  // Send error if file not found
   ifstream inFile(fileName);
   if (!inFile.is_open()) {
     cerr << "Failed to open file." << endl;
@@ -32,6 +34,7 @@ int main() {
 
   inFile.close();
 
+  // Ask the user what they would like to do with the data sets
   cout << "What would you like to do?: " << endl;
   cout << "(A) Search" << endl
        << "(B) Modify" << endl
@@ -43,11 +46,13 @@ int main() {
   cin >> option;
   cout << endl << endl;
 
+  // While user's option is not exit, continue with the program
   while (option != "E") {
+    // If option equals A, search for the index using the user input
     if (option == "A" or option == "a") {
       cout << "What number would you like to check?: ";
       cin >> searchNum;
-
+      // End program if input is not int
       if (cin.fail()) {
         cout << "That's not an integer" << endl;
         break;
@@ -68,11 +73,13 @@ int main() {
 
     }
 
+    // If option equals B, modify the number using user input
     else if (option == "B" or option == "b") {
       cout << "What is the index number for the integer you would like to "
               "modify?: ";
       cin >> modifyIndex;
-
+      
+      // End program if input is not int
       if (cin.fail()) {
         cout << "That's not an integer" << endl;
         break;
@@ -83,6 +90,7 @@ int main() {
         cout << "What integer would you like to change it to?: ";
         cin >> newNum;
         cout << endl << endl;
+        // End program if input is not int
         if (cin.fail()) {
           cout << "That's not an integer" << endl;
           break;
@@ -103,11 +111,13 @@ int main() {
       }
     }
 
+    // If option equals C, add the number using user input
     else if (option == "C" or option == "c") {
       cout << "What number would you like to add?: ";
       cin >> newNum;
       cout << endl << endl;
 
+      // End program if input is not int
       if (cin.fail()) {
         cout << "That's not an integer" << endl;
         break;
@@ -118,11 +128,13 @@ int main() {
       }
     }
 
+    // If option equals D, remove number using user input
     else if (option == "D" or option == "d") {
       cout << "What is the index number of the integer you would like to "
               "remove?: ";
       cin >> removeIndex;
       cout << endl << endl;
+      // End program if input is not int
       if (cin.fail()) {
         cout << "That's not an integer" << endl;
         break;
@@ -131,6 +143,7 @@ int main() {
       Remove(data, removeIndex);
     }
 
+    // If option is not A, B, C, D, or E, return error message
     else {
       cout << "Invalid Response" << endl << endl;
 
@@ -146,7 +159,8 @@ int main() {
       cout << endl << endl;
     }
 
-    cout << "Updated Array:" << endl;
+    // Return updated vector
+    cout << "Updated vector:" << endl;
     size = data.size();
     for (int i = 0; i < size; ++i) {
       cout << data[i] << " ";
@@ -168,6 +182,7 @@ int main() {
     cin >> option;
     cout << endl << endl;
 
+    // If option equals E, break while loop
     if (option == "E" or option == "e") {
       break;
     } else {
